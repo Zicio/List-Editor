@@ -1,3 +1,3 @@
-import Dom from './DOM';
+import Logic from './Logic';
 
-const gamePlay = new Dom(document);
+const gamePlay = new Logic(document);

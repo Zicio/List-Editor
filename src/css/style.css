@@ -1,3 +1,13 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+* {
+    font-size: 20px;
+}
+
 html {
 	background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
 	background-size: 20px 20px;
@@ -20,8 +30,6 @@ html {
 }
 
 .list__add-submit {
-    all: unset;
-    cursor: pointer;
     font-size: 30px;
     margin-top: -5px;   
 }
@@ -29,29 +37,69 @@ html {
 .list__table {
     min-width: 100%;
     margin-top: 5px;
+    padding: 5px;
     border: 1px solid black;
     background-color: rgba(255, 255, 255, 1);
 }
 
 th {
     font-weight: normal;
-    width: 30%;
     text-align: start;
-}
-
-th:nth-child(1) {
     width: 40%;
 }
 
 th:nth-child(3) {
-    text-align: end;
+    width: 20%;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
 }
 
 .popup {
+    display: inline-block;
     position: absolute;
+    background-color: white;
+    z-index: 1;
     top: 10px;
-    right: 10px;
-    width: 87%;
+    right: 7px;
+    min-width: 87%;
     border: 1px solid black;
     padding: 5%;
+}
+
+.form__group:nth-child(2) {
+    margin-top: 10px;
+}
+
+.form__label {
+    display: block;
+    margin-left: 10px;
+}
+
+.input {
+    border-radius: 15px;
+    border: 1px solid black;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.form__button-container {
+    display: flex;
+    justify-content: end;
+}
+
+.form__button {
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 20px;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 5px 40px;
+}
+
+.form__button:nth-child(2) {
+    margin-left: 20px;
 }
