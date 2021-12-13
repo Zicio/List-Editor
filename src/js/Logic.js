@@ -6,22 +6,28 @@ export default class Logic {
       throw new Error('Элемент не существует');
     } else {
       this.element = element;
+      Logic.startRender();
       this.listenerOfAdd();
+      this.listenerOfSave();
+      this.listenerOfReset();
     }
   }
 
-  // start() {
-  //   try {
-  //     const productData = JSON.parse(localStorage.getItem('productData'));
-  //     if (productData !== null)
-
-  //     }
-  //     catch(e){
-  //       console.error(e);
-  //     }
-  // }
+  static startRender() {
+    if (localStorage.productData) {
+      DOM.renderNewProduct(JSON.parse(localStorage.productData));
+    }
+  }
 
   listenerOfAdd() {
     this.element.addEventListener('click', (e) => DOM.renderPopUp(e));
+  }
+
+  listenerOfSave() {
+    this.element.addEventListener('click', (e) => DOM.saveProduct(e));
+  }
+
+  listenerOfReset() {
+    this.element.addEventListener('click', (e) => DOM.resetForm(e));
   }
 }
