@@ -7,33 +7,16 @@ export default class DOM {
     }
   }
 
-  static add(e) {
-    e.preventDefault();
-    if (e.target.classList.contains('list__add-submit')) {
-      DOM.renderPopUp();
-    }
-  }
-
-  static saveProduct(e, index) {
-    if (e.target.classList.contains('form__save')) {
-      e.preventDefault();
-      const form = e.target.closest('.popup').querySelector('.form');
-      const newProductData = [...form.elements].map(({ id, value }) => ({ id, value }));
-      const popUp = e.target.closest('.popup');
-      popUp.remove();
-      DOM.saveData(newProductData);
-      DOM.renderProducts();
-    }
-  }
-
-  static saveData(data) {
-    localStorage.setItem(`${data[0].value}`, JSON.stringify(data));
+  static saveProduct(e) {
+    const popUp = e.target.closest('.popup');
+    popUp.remove();
+    DOM.renderProducts();
   }
 
   static resetForm(e) {
-    e.preventDefault();
     const popUp = document.querySelector('.popup');
     if (e.target.classList.contains('form__reset')) {
+      e.preventDefault();
       popUp.remove();
     }
   }
@@ -56,7 +39,7 @@ export default class DOM {
   }
 
   static renderPopUp() {
-    const popUpEl = '<div class=popup><form action="" class="form" id="form"><div class="form__group"><label class="form__label" for="=name">Название</label><input type="text" class="form__name input" id="name" required=""></div><div class="form__group"><label class="form__label" for="price">Стоимость</label><input type="number" class="form__price input" id="price" min="1"required=""></div></form><div class="form__button-container"><button type="submit" class="form__save form__button">Сохранить</button><button type="reset" class="form__reset form__button">Отмена</button></div></div>';
+    const popUpEl = '<div class=popup><form action="" class="form" id="form"><div class="form__group"><label class="form__label" for="=name">Название</label><input type="text" class="form__name input" id="name" data-validity-message="Поле пустое" minLength="1"></div><div class="form__group"><label class="form__label" for="price">Стоимость</label><input type="number" class="form__price input" id="price" data-validity-message="Поле пустое" minLength="1" min="1"></div></form><div class="form__button-container"><button type="submit" class="form__save form__button">Сохранить</button><button type="reset" class="form__reset form__button">Отмена</button></div></div>';
     document.querySelector('.list').insertAdjacentHTML('beforeend', popUpEl);
   }
 
@@ -64,7 +47,7 @@ export default class DOM {
     const newRowTable = document.querySelector('.list__table > tbody');
     const ProductName = productData[0].value;
     const ProductPrice = productData[1].value;
-    const newProduct = `<tr class="list__product"><th class="product__name">${ProductName}</th><th class="product__price">${ProductPrice}</th><th><button type="button" class="change-button">&#9998</button><button type="button" class="delete-button">&#10006</button></th></tr>`;
+    const newProduct = `<tr class="list__product"><th class="product__name">${ProductName}</th><th class="product__price">${+ProductPrice}</th><th><button type="button" class="change-button">&#9998</button><button type="button" class="delete-button">&#10006</button></th></tr>`;
     newRowTable.insertAdjacentHTML('beforeend', newProduct);
   }
 

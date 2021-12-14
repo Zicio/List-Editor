@@ -12,6 +12,7 @@
       "WithStatement"
     ],
     "no-unused-vars": "off",
-    "no-unused-expressions": "warn"
+    "no-unused-expressions": "warn",
+    "no-plusplus": "warn"
   }
 }
