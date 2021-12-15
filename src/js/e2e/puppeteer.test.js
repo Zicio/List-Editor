@@ -4,7 +4,7 @@ jest.setTimeout(30000);
 describe('Credit card validator', () => {
   let browser = null;
   let page = null;
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = 'http://localhost:9000';
   beforeAll(async () => {
     browser = await puppeteer.launch({
       headless: false,
@@ -20,11 +20,7 @@ describe('Credit card validator', () => {
 
   describe('Credit card validator', () => {
     test('should add .success-active class for valid number', async () => {
-      try {
-        await page.goto(baseUrl);
-      } catch (error) {
-        console.log(error.message);
-      }
+      await page.goto(baseUrl);
       const main = await page.$('.list');
       const add = await main.$('.list__add-submit');
       add.click();
