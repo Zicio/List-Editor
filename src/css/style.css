@@ -103,3 +103,10 @@ button {
 .form__button:nth-child(2) {
     margin-left: 20px;
 }
+
+.form__hint {
+  position: absolute;
+  display: inline-block;
+  margin-left: 5px;
+  height: 40px;
+}

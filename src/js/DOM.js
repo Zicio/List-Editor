@@ -13,6 +13,21 @@ export default class DOM {
     DOM.renderProducts();
   }
 
+  static renderHint(invalid) {
+    for (const field of invalid) {
+      const parent = field.offsetParent;
+      const hint = document.createElement('div');
+      hint.classList.add('form__hint');
+      hint.textContent = field.dataset.validityMessage;
+      parent.appendChild(hint);
+      const { top, left } = field.getBoundingClientRect();
+      hint.style.top = `${window.scrollY + top + field.offsetHeight / 2 - hint.offsetHeight}px`;
+      hint.style.left = `${window.scrollX + left + field.offsetWidth}px`;
+      hint.style.fontSize = '17px';
+      hint.style.color = 'red';
+    }
+  }
+
   static resetForm(e) {
     const popUp = document.querySelector('.popup');
     if (e.target.classList.contains('form__reset')) {
@@ -39,7 +54,7 @@ export default class DOM {
   }
 
   static renderPopUp() {
-    const popUpEl = '<div class=popup><form action="" class="form" id="form"><div class="form__group"><label class="form__label" for="=name">Название</label><input type="text" class="form__name input" id="name" data-validity-message="Поле пустое" minLength="1"></div><div class="form__group"><label class="form__label" for="price">Стоимость</label><input type="number" class="form__price input" id="price" data-validity-message="Поле пустое" minLength="1" min="1"></div></form><div class="form__button-container"><button type="submit" class="form__save form__button">Сохранить</button><button type="reset" class="form__reset form__button">Отмена</button></div></div>';
+    const popUpEl = '<div class=popup><form action="" class="form" id="form"><div class="form__group"><label class="form__label" for="=name">Название</label><input type="text" class="form__name input" id="name" data-validity-message="Введите корректное значение" required=""></div><div class="form__group"><label class="form__label" for="price">Стоимость</label><input type="number" class="form__price input" id="price" min="1" data-validity-message="Введите корректное значение" min="1" required=""></div></form><div class="form__button-container"><button type="button" class="form__save form__button">Сохранить</button><button type="button" class="form__reset form__button">Отмена</button></div></div>';
     document.querySelector('.list').insertAdjacentHTML('beforeend', popUpEl);
   }
 

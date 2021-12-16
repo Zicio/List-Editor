@@ -38,13 +38,23 @@ export default class Logic {
 
   static saveProduct(e) {
     if (e.target.classList.contains('form__save')) {
-      e.preventDefault();
       const form = e.target.closest('.popup').querySelector('.form');
-      const first = [...form.elements].find((o) => o.validity.tooShort); //! Все время undefined
-      const newProductData = [...form.elements].map(({ id, value }) => ({ id, value }));
-      Logic.saveData(newProductData);
-      DOM.saveProduct(e);
+      const invalid = [...form.elements].filter((o) => !o.validity.valid);
+      try {
+        Logic.checkInValidity(invalid);
+      } catch (err) {
+        const newProductData = [...form.elements].map(({ id, value }) => ({ id, value }));
+        Logic.saveData(newProductData);
+        DOM.saveProduct(e);
+      }
     }
+  }
+
+  static checkInValidity(invalid) {
+    if (!invalid.length) {
+      throw new Error('проверка не нужна');
+    }
+    DOM.renderHint(invalid);
   }
 
   static saveData(data) {

@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "test": "jest --testPathPattern=./src/js/__tests__/",
     "coverage": "jest --testPathPattern=./src/js/__tests__/ --coverage",
-    "e2e": "jest --testPathPattern=./src/js/e2e/",
+    "e2e": "jest --testPathPattern=./src/js/e2e/ --runInBand",
     "doc": "jsdoc -c jsdoc.conf.json",
     "preshow:coverage": "npm run coverage",
     "show:coverage": "live-server coverage/lcov-report",
