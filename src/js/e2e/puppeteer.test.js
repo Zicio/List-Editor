@@ -1,6 +1,6 @@
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
-jest.setTimeout(50000);
+jest.setTimeout(30000);
 describe('List-Editor', () => {
   let browser = null;
   let page = null;
@@ -10,6 +10,8 @@ describe('List-Editor', () => {
       headless: false,
       slowMo: 100,
       devtools: false,
+      // For my work computer with Windows 7 and rights restrictions
+      // executablePath: 'C:/Users/BurachkovAA1/AppData/Local/Google/Chrome Dev/Application/chrome.exe',
     });
     page = await browser.newPage();
   });
