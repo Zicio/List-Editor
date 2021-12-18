@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 
 jest.setTimeout(30000);
 describe('List-Editor', () => {
