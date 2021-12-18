@@ -11,6 +11,7 @@ describe('List-Editor', () => {
       slowMo: 100,
       devtools: false,
       // For my work computer with Windows 7 and rights restrictions
+      // eslint-disable-next-line max-len
       // executablePath: 'C:/Users/BurachkovAA1/AppData/Local/Google/Chrome Dev/Application/chrome.exe',
     });
     page = await browser.newPage();
