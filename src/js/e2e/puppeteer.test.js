@@ -7,7 +7,7 @@ describe('List-Editor', () => {
   const baseUrl = 'http://localhost:9000';
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       slowMo: 100,
       devtools: false,
       // For my work computer with Windows 7 and rights restrictions
