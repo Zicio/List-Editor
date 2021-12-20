@@ -53,11 +53,25 @@ describe('List-Editor', () => {
       await page.waitForSelector('.popup');
     });
 
-    // test('close popup', async () => {
-    //   const resetButton = await page.$('.form__reset');
-    //   resetButton.click();
-    //   const result = await page.evaluate(() => document.querySelectorAll('.popup').length);
-    //   expect(result).toBe(0); //! возвращает result = 1, а не 0
-    // });
+    test('close popup', async () => {
+      const resetButton = await page.$('.form__reset');
+      resetButton.click();
+      await page.waitForTimeout(500);
+      expect(await page.$('.popup')).toBe(null);
+    });
+
+    test('change product', async () => {
+      const changeButton = await page.$('.change-button');
+      changeButton.click();
+      await page.waitForTimeout(500);
+      const InputName = await page.$('.form__name');
+      const InputPrice = await page.$('.form__price');
+      await InputName.click({ clickCount: 3 });
+      await InputName.press('Backspace');
+      await InputPrice.click({ clickCount: 3 });
+      await InputPrice.press('Backspace');
+      await InputName.type('Тыква');
+      await InputPrice.type('30');
+    });
   });
 });
