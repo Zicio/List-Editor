@@ -12,7 +12,7 @@
     "test": "jest --testPathPattern=./src/js/__tests__/",
     "coverage": "jest --testPathPattern=./src/js/__tests__/ --coverage",
     "e2e": "jest --testPathPattern=./src/js/e2e/ --runInBand",
-    "ci": "start-server-and-test start http-get://localhost:9000 e2e",
+    "ci": "start-server-and-test start http://localhost:9000 e2e",
     "doc": "jsdoc -c jsdoc.conf.json",
     "preshow:coverage": "npm run coverage",
     "show:coverage": "live-server coverage/lcov-report",
